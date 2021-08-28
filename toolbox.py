@@ -1,3 +1,4 @@
+from randomize_items import randomize_items
 from zdspy import rom_util
 from zdspy import map2d
 from zdspy import dataio as d
@@ -11,6 +12,7 @@ print("1 - Randomize Entrances")
 print("2 - Extract ROM")
 print("3 - Re-Insert Files into ROM")
 print("4 - Dump Map2D from ROM")
+print("5 - Randomize Items")
 print("")
 print("###############################")
 
@@ -36,9 +38,45 @@ elif choice == "3":
     print("Drag and Drop the replacement root folder in here or provide the path.")
     replacement_data_root = os.path.abspath(input("> ")) + "/"
     rom_util.replace(rom_path , replacement_data_root, rom_path[:-4]+"_modified.nds", confirm=True)
+elif choice == "5":
+    print("### WIP ITEM RANDOMIZER ###")
+    print("Drag and Drop your ROM in here or provide the path.")
+
+    rom_path = input("> ")
+
+    print("Please enter a seed (Numbers only or nothing for a random one!)")
+    seed = input("> ")
+    if seed == "":
+        seed = random.randint(0, 65536)
+    else:
+        seed = int(seed)
+
+    print("At this stage of development there is only a no logic version!")
+    print("There is a VERY high chance of softlocking the game :)")
+
+    print("Your seed is: " + str(seed))
+    input("Press enter to start randomizing!")
+
+    # Extract rom contents first!
+    rom_util.extract(rom_path, "./extracted/root/", confirm=False)
+
+    randomize_items(seed, "./extracted/root/Map/", "./extracted/randomized_items_nl_"+str(seed)+"/Map/")
+
+    # Reinsert the randomized files into a donor rom
+    rom_util.replace(rom_path, "./extracted/randomized_items_nl_" + str(seed) + "/",
+                     rom_path[:-4] + "_nl_randomized_items_" + str(seed) + ".nds", confirm=False)
+
+    print("############################################################################################")
+    print("############################################################################################")
+    print("############################################################################################")
+    print()
+    print("All done!")
+    print("Your seed is: " + str(seed))
+    print("You can find your ROM here: \"" + os.path.abspath(
+        rom_path[:-4] + "_nl_randomized_items_" + str(seed) + ".nds") + "\"")
 elif choice == "1":
     # randomize
-    print("### WIP RANDOMIZER ###")
+    print("### WIP ENTRANCE RANDOMIZER ###")
     print("Drag and Drop your ROM in here or provide the path.")
     rom_path = input("> ")
 

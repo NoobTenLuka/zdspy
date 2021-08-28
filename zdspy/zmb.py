@@ -206,6 +206,9 @@ class ZMB_MPOB_CE:
 
         return buffer
 
+    def clone(self):
+        return ZMB_MPOB_CE(self.data, 0)
+
 
 class ZMB_NPCA(gh.ZDS_GenericElementHeader):
     """NPCA Section"""

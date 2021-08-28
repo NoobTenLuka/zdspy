@@ -2,6 +2,22 @@ Object ID List
 
 Decimal:
 
+# Tested with OBJID:10 XPos:38 YPos:33 HEX:00000100000000000000010100000000000000010000 [:26]  (dngn_flame_00.zmb) (Contains Key)
+
+0 = Crash if set directly (Undefined instruction)
+
+1 = Crash if set directly (Undefined instruction)
+
+2 = Stone
+
+3 = Pot with green rupee? inside
+
+4 = Fence without collision?
+
+5 = Switch
+
+6 = Candle
+
 7 = Blue Door [
 
     OBJID:7 XPos:31 YPos:19 HEX:0000000000000000000003011d000000000000010000 [:41]  (dngn_flame_00.zmb)
@@ -216,9 +232,189 @@ Decimal:
 
 ]
 
+11 = Hidden wooden chest
+
+12 = Hidden wooden chest
+
+13 = Crash if set directly
+
+14 = Pot with heart inside
+
+15 = Crash if set directly (Undefined instruction)
+
+16 = Orb Switch
+
+17 = Static fire obstacle (Beginning of fire temple)
+
+18 = Crash if set directly
+
+19 = Crash if set directly
+
+20 = Infinite falling???
+
+21 = Crash if set directly (Undefined instruction)
+
+22 = Crash if set directly (Undefined instruction)
+
+23 = Red / Blue orb switch
+
+24 = Red block
+
+25 = Grappling hook pole
+
+26 = Staircase up
+
+27 = Electro door
+
+28 = Crash if set directly
+
+29 = Arrow repeater
+
+30 = Safety field from pot
+
+31 = Sign
+
+32 = Crash if set directly (Undefined instruction)
+
+33 = Boss "door"
+
+34 = Crash if set directly (Undefined instruction)
+
+35 = Stone sign
+
+36 = Bomb flower
+
+37 = Crash if set directly (Undefined instruction)
+
+38 = Hourglass / Triforce door (Crash on activation if set directly)
+
+39 = Crash if set directly
+
+40 = Crash if set directly (Undefined instruction)
+
+41 = Crash if set directly (Undefined instruction)
+
+42 = Crash if set directly (Undefined instruction)
+
+43 = Crash if set directly (Undefined instruction)
+
+44 = Pillar key door
+
+45 = Crash if set directly (Undefined instruction)
+
+46 = Stone entrance
+
+47 = Crash if set directly (Undefined instruction)
+
+48 = Crash if set directly (Undefined instruction)
+
+49 = Crash if set directly
+
+50 = Crash if set directly (Undefined instruction)
+
+51 = Crash if set directly (Undefined instruction)
+
+52 = Frame
+
+53 = Crash if set directly (Undefined instruction)
+
+54 = Torch clicking map
+
+55 = Crash if set directly (Undefined instruction)
+
+56 = Crash if set directly (Undefined instruction)
+
+57 = Crash if set directly (Undefined instruction)
+
+58 = Crash if set directly (Undefined instruction)
+
+59 = Torch
+
+60 = Entrance (idk where it's used normally)
+
+61 = Wall crack
+
+62 = Eye switch
+
 63 = Breakable Yellow Brick [
     OBJID:63 XPos:37 YPos:10 HEX:00000000000000000000010100000000000000010000 [:56]  (dngn_flame_00.zmb)
     OBJID:63 XPos:38 YPos:10 HEX:00000000000000000000010100000000000000010000 [:57]  (dngn_flame_00.zmb)
     OBJID:63 XPos:37 YPos:11 HEX:00000000000000000000010100000000000000010000 [:58]  (dngn_flame_00.zmb)
     OBJID:63 XPos:38 YPos:11 HEX:00000000000000000000010100000000000000010000 [:59]  (dngn_flame_00.zmb)
 ]
+
+64 = Block with cracks
+
+65 = Crash if set directly (Undefined instruction)
+
+66 = Shovel hole (after digging)
+
+67 = Pillar
+
+68 = Slightly different block with cracks
+
+69 = Spikes
+
+70 = Stone fence (without collision)
+
+71 = Pull lever
+
+72 = Crash if set directly (Undefined instruction)
+
+73 = Square gem holder
+
+74 = Crash if set directly (Undefined instruction)
+
+75 = Crash if set directly (Undefined instruction)
+
+76 = Crash if set directly (Undefined instruction)
+
+77 = Crash if set directly (Undefined instruction)
+
+78 = Crash if set directly (Undefined instruction)
+
+79 = Crash if set directly (Undefined instruction)
+
+80 = Crash if set directly (Undefined instruction)
+
+81 = Crash if set directly (Undefined instruction)
+
+82 = Crash if set directly (Undefined instruction)
+
+83 = Crash if set directly
+
+84 = Crash if set directly (Undefined instruction)
+
+85 = Crash if set directly (Undefined instruction)
+
+86 = Crash if set directly (Undefined instruction)
+
+87 = Crash if set directly (Undefined instruction)
+
+88 = Wind blower
+
+89 = Wind hole
+
+90 = Big Chest
+
+91 = Hidden Big Chest
+
+92 = Hidden Big Chest
+
+93 = Wall crack with fancy wall
+
+94 = Crash if set directly (Undefined instruction)
+
+95 = Staircase entrance
+
+96 = Something inside the floor
+
+97 = Crash if set directly
+
+98 = Crash if set directly (Undefined instruction)
+
+99 = Crash if set directly (Undefined instruction)
+
+100 = Crash if set directly (Undefined instruction)
+
+Highest used ObjectID = 157
