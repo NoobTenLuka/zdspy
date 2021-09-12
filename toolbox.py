@@ -1,3 +1,4 @@
+from link_entrances import link_entrances
 from randomize_items import randomize_items
 from zdspy import rom_util
 from zdspy import map2d
@@ -13,9 +14,9 @@ print("2 - Extract ROM")
 print("3 - Re-Insert Files into ROM")
 print("4 - Dump Map2D from ROM")
 print("5 - Randomize Items")
+print("6 - Swap two entrances")
 print("")
 print("###############################")
-
 
 choice = input("> ")
 if choice == "4":
@@ -37,7 +38,28 @@ elif choice == "3":
     rom_path = input("> ")
     print("Drag and Drop the replacement root folder in here or provide the path.")
     replacement_data_root = os.path.abspath(input("> ")) + "/"
-    rom_util.replace(rom_path , replacement_data_root, rom_path[:-4]+"_modified.nds", confirm=True)
+    rom_util.replace(rom_path, replacement_data_root, rom_path[:-4] + "_modified.nds", confirm=True)
+elif choice == "6":
+    print("Link two entrances")
+    print("Drag and Drop your ROM in here or provide the path.")
+
+    rom_path = input("> ")
+
+    print("First entrance. Format: map_name-area_number-warp_id Example: isle_main-00-1")
+    entrance1 = input("> ")
+
+    print("Second entrance. Format: map_name-area_number-warp_id Example: dngn_flame-00-1")
+    entrance2 = input("> ")
+
+    # Extract rom contents first!
+    rom_util.extract(rom_path, "./extracted/root/", confirm=False)
+
+    link_entrances(entrance1, entrance2, "./extracted/root/Map/",
+                   "./extracted/" + entrance1 + "-linked-" + entrance2 + "/Map/")
+
+    # Reinsert the randomized files into a donor rom
+    rom_util.replace(rom_path, "./extracted/" + entrance1 + "-linked-" + entrance2 + "/",
+                     rom_path[:-4] + "_" + entrance1 + "-linked-" + entrance2 + ".nds", confirm=False)
 elif choice == "5":
     print("### WIP ITEM RANDOMIZER ###")
     print("Drag and Drop your ROM in here or provide the path.")
@@ -64,7 +86,8 @@ elif choice == "5":
     # Extract rom contents first!
     rom_util.extract(rom_path, "./extracted/root/", confirm=False)
 
-    randomize_items(seed, "./extracted/root/Map/", "./extracted/randomized_items_"+str(seed)+"/Map/", randomizer_logic)
+    randomize_items(seed, "./extracted/root/Map/", "./extracted/randomized_items_" + str(seed) + "/Map/",
+                    randomizer_logic)
 
     # Reinsert the randomized files into a donor rom
     rom_util.replace(rom_path, "./extracted/randomized_items_" + str(seed) + "/",
@@ -96,9 +119,10 @@ elif choice == "1":
     # Types:
     print("1 - nl -> no logic - completely random (probably the most interresting one)")
     print("2 - nld -> no logic dual - failed at linking two entrances together")
-    print("3 - nll -> no logic linked - tries to link two entrances together but fails most of the time because it picks the wrong entrance (default)")
+    print(
+        "3 - nll -> no logic linked - tries to link two entrances together but fails most of the time because it picks the wrong entrance (default)")
     print("4 - bl -> basic Logic (still work in progress)")
-    
+
     randomizer_logic = input("> ")
 
     if randomizer_logic == "1":
@@ -108,31 +132,34 @@ elif choice == "1":
     elif randomizer_logic == "3":
         randoType = "nll"
     elif randomizer_logic == "4":
-        randoType = "bl"    
+        randoType = "bl"
     else:
         randoType = "nll"
 
-    print("Your seed is: "+str(seed))
-    print("Your randomizer type is: "+randoType)
+    print("Your seed is: " + str(seed))
+    print("Your randomizer type is: " + randoType)
     input("Press enter to start randomizing!")
 
     # Extract rom contents first!
     rom_util.extract(rom_path, "./extracted/root/", confirm=False)
 
     # Use the extracted files as randomizer input
-    randomize.randomize(seed, "./extracted/root/Map/", "./extracted/randomized_"+randoType+"_"+str(seed)+"/Map/", randoType=randoType)
+    randomize.randomize(seed, "./extracted/root/Map/",
+                        "./extracted/randomized_" + randoType + "_" + str(seed) + "/Map/", randoType=randoType)
 
     # Reinsert the randomized files into a donor rom
-    rom_util.replace(rom_path , "./extracted/randomized_"+randoType+"_"+str(seed)+"/", rom_path[:-4]+"_"+randoType+"_randomized_"+str(seed)+".nds", confirm=False)
+    rom_util.replace(rom_path, "./extracted/randomized_" + randoType + "_" + str(seed) + "/",
+                     rom_path[:-4] + "_" + randoType + "_randomized_" + str(seed) + ".nds", confirm=False)
 
     print("############################################################################################")
     print("############################################################################################")
     print("############################################################################################")
     print()
     print("All done!")
-    print("Your seed is: "+str(seed))
-    print("Your randomizer type is: "+randoType)
-    print("You can find your ROM here: \"" + os.path.abspath(rom_path[:-4]+"_"+randoType+"_randomized_"+str(seed)+".nds") + "\"")
+    print("Your seed is: " + str(seed))
+    print("Your randomizer type is: " + randoType)
+    print("You can find your ROM here: \"" + os.path.abspath(
+        rom_path[:-4] + "_" + randoType + "_randomized_" + str(seed) + ".nds") + "\"")
 elif choice == "0":
     print("debug stuff:")
     print("1 - compare files")

@@ -66,7 +66,7 @@ class ZMB_WARP_CE:
     fade_type: int = 0
     map_id: int = 0
     destination_warp_id: int = 0
-    destination: int = 0
+    destination: str = ""
     run_direction: int = 0
 
     def __init__(self, uid, ft, mid, dwid, dest, rundir):
