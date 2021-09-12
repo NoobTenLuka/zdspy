@@ -8,7 +8,7 @@ from zdspy import zmb as zds
 from zdspy import dataio as d
 
 
-def randomize_items(seed, workdir, outdir, rando_type="nl"):
+def randomize_items(seed, workdir, outdir, rando_type="bl"):
     random.seed(seed)
 
     error_log = []
@@ -57,6 +57,8 @@ def randomize_items(seed, workdir, outdir, rando_type="nl"):
 
     if rando_type == "nl":
         new_item_list = no_logic(item_list)
+    if rando_type == "bl":
+        new_item_list = basic_logic(item_list)
     else:
         raise ValueError("Error. " + rando_type + " not found!")
 
@@ -64,7 +66,6 @@ def randomize_items(seed, workdir, outdir, rando_type="nl"):
     print("#######################################################################")
     print("#######################################################################")
     print("Writing changes ...")
-    print(zmb_cache)
 
     # Write new items to maplist
     phantom_map: ZDS_PH_MAP
@@ -81,7 +82,6 @@ def randomize_items(seed, workdir, outdir, rando_type="nl"):
                 if not (mpobh is None):
                     for i, mpob in enumerate(mpobh.children):
                         if mpob.mapobjectid == 10 or mpob.mapobjectid == 90 or mpob.mapobjectid == 92 or mpob.mapobjectid == 12 or mpob.mapobjectid == 11 or mpob.mapobjectid == 91:
-                            print("YES!")
                             mpob.data = d.w_UInt8(mpob.data, 8, new_item_list[filename + str(i)])
 
                     map_area.getArchive().setFileByName(filename, zmb.save())
@@ -121,3 +121,34 @@ def no_logic(item_list):
     return new_item_list
 
 
+def basic_logic(item_list):
+    ban_list = [
+        1,  # Keys
+        3,  # Sword
+        19  # First Sea Chart
+    ]
+
+    new_item_list = {}
+
+    for filename, item in item_list.items():
+        if item in ban_list:
+            new_item_list[filename] = item
+
+    for filename in new_item_list:
+        del item_list[filename]
+
+    prev_filename, prev_item = random.choice(list(item_list.items()))
+    first = (prev_filename, prev_item)
+    del item_list[prev_filename]
+    for i in range(len(item_list)):
+        filename, item = random.choice(list(item_list.items()))
+        del item_list[filename]
+
+        print(str(filename) + " is now " + str(prev_item))
+        new_item_list[filename] = prev_item
+        prev_filename = filename
+        prev_item = item
+    # Insert first item
+    filename, item = first
+    new_item_list[filename] = prev_item
+    return new_item_list

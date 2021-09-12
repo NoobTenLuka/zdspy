@@ -22,6 +22,8 @@ __pycache__/
 # Zelda Map Binary
 *.zmb
 
+*.bak
+
 # Distribution / packaging
 .Python
 build/

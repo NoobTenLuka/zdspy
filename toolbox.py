@@ -52,7 +52,11 @@ elif choice == "5":
         seed = int(seed)
 
     print("At this stage of development there is only a no logic version!")
-    print("There is a VERY high chance of softlocking the game :)")
+    print("There is a VERY high chance of softlocking the game regardless of setting :)")
+    # Types:
+    print("nl -> no logic - completely random (will probably softlock immediately, due to missing sword)")
+    print("bl -> basic logic - softlockable, although sword and keys are guaranteed")
+    randomizer_logic = input("> ")
 
     print("Your seed is: " + str(seed))
     input("Press enter to start randomizing!")
@@ -60,11 +64,11 @@ elif choice == "5":
     # Extract rom contents first!
     rom_util.extract(rom_path, "./extracted/root/", confirm=False)
 
-    randomize_items(seed, "./extracted/root/Map/", "./extracted/randomized_items_nl_"+str(seed)+"/Map/")
+    randomize_items(seed, "./extracted/root/Map/", "./extracted/randomized_items_"+str(seed)+"/Map/", randomizer_logic)
 
     # Reinsert the randomized files into a donor rom
-    rom_util.replace(rom_path, "./extracted/randomized_items_nl_" + str(seed) + "/",
-                     rom_path[:-4] + "_nl_randomized_items_" + str(seed) + ".nds", confirm=False)
+    rom_util.replace(rom_path, "./extracted/randomized_items_" + str(seed) + "/",
+                     rom_path[:-4] + "_randomized_items_" + str(seed) + ".nds", confirm=False)
 
     print("############################################################################################")
     print("############################################################################################")
